@@ -1,0 +1,25 @@
+boot.o: boot.S multiboot.h x86_desc.h types.h
+page.o: page.S
+stub_handler.o: stub_handler.S
+x86_desc.o: x86_desc.S x86_desc.h types.h
+file_system.o: file_system.c file_system.h types.h lib.h task.h \
+  file_desc.h
+i8259.o: i8259.c i8259.h types.h lib.h task.h file_desc.h
+idt_handler.o: idt_handler.c lib.h types.h task.h file_desc.h \
+  idt_handler.h i8259.h terminal.h rtc.h
+irq0.o: irq0.c irq0.h lib.h types.h task.h file_desc.h i8259.h
+kernel.o: kernel.c multiboot.h types.h x86_desc.h lib.h task.h \
+  file_desc.h i8259.h debug.h idt_handler.h sys_call.h stub_handler.h \
+  page.h rtc.h terminal.h file_system.h test.h
+lib.o: lib.c lib.h types.h task.h file_desc.h
+rtc.o: rtc.c rtc.h lib.h types.h task.h file_desc.h
+sys_call.o: sys_call.c sys_call.h types.h file_op_table.h lib.h task.h \
+  file_desc.h idt_handler.h rtc.h file_system.h terminal.h page.h
+table.o: table.c task.h types.h file_desc.h lib.h table.h
+task.o: task.c task.h types.h file_desc.h page.h x86_desc.h file_system.h \
+  lib.h i8259.h irq0.h
+terminal.o: terminal.c terminal.h types.h lib.h task.h file_desc.h \
+  table.h
+test.o: test.c test.h types.h lib.h task.h file_desc.h multiboot.h \
+  x86_desc.h i8259.h debug.h idt_handler.h page.h rtc.h terminal.h \
+  file_system.h
